@@ -1,6 +1,6 @@
 # The Inaugural Yatesville Creek Paper Boat Race
 
-An informational site for a spring 2027 paper boat race down Yatesville Creek in Sprakers, New York. Boats launch from a secret spot below Yatesville Falls and finish at The Root.
+An informational site for a midsummer paper boat race (tentatively Friday, July 9, 2027) down Yatesville Creek in Sprakers, New York. Boats launch from a secret spot below Yatesville Falls and finish at The Root.
 
 The landing page has a map of the creek, from Yatesville Falls to the Mohawk River, **with south at the top**. That way the creek flows down the page the same way the boats do. Below the map is a sign-up form for people who want an email when registration opens.
 
@@ -41,12 +41,13 @@ Repo: https://github.com/runfromrobots/YCPBR
 
 `lib/mapData.ts` is generated from OpenStreetMap data (© OpenStreetMap contributors, ODbL) by `scripts/build-map.py`. Things you may want to tune:
 
-- `FINISH_INDEX` is where **The Root** marker sits on the creek. It's currently a placeholder near the creek mouth.
+- `FINISH_INDEX` is where **The Root** marker sits: where the 336 Anderson Road property meets the creek.
+- `ARBORETUM_INDEX` is where the creek crosses the future arboretum parcels (`scripts/arboretum-parcels.geojson`), marked as a possible start.
 - `START_HINT_INDEX` is where the "?" start marker points. It's deliberately vague and isn't the real start.
 - `LAT_MIN/LAT_MAX/LON_MIN/LON_MAX` set the map window.
 
 To regenerate the map, export the area from Overpass as JSON, then run:
 
 ```bash
-python3 scripts/build-map.py area.json > lib/mapData.ts
+python3 scripts/build-map.py area.json scripts/arboretum-parcels.geojson > lib/mapData.ts
 ```

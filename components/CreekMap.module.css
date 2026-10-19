@@ -39,6 +39,11 @@
   opacity: 0.25;
 }
 
+.arboretum {
+  fill: var(--green);
+  opacity: 0.55;
+}
+
 .river {
   fill: var(--sky);
 }

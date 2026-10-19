@@ -1,6 +1,6 @@
 """Build lib/mapData.ts from an OpenStreetMap Overpass JSON export.
 
-Usage: python3 scripts/build-map.py area.json > lib/mapData.ts
+Usage: python3 scripts/build-map.py area.json scripts/arboretum-parcels.geojson > lib/mapData.ts
 
 The map is rotated 180 degrees: south is at the top (upstream, near
 Yatesville Falls) and north is at the bottom (the Mohawk River).
@@ -22,8 +22,9 @@ HEIGHT = round((LAT_MAX - LAT_MIN) * M_PER_LAT * SCALE)
 
 CREEK = 175370060
 FALLS_INDEX = 199  # end of NY State Preserve Road, at the falls
-FINISH_INDEX = 286  # placeholder for The Root, near the mouth
+FINISH_INDEX = 257  # The Root (336 Anderson Road), where the property meets the creek
 START_HINT_INDEX = 232  # where the "start TBA" marker points; not the real start
+ARBORETUM_INDEX = 249  # where the creek crosses the future arboretum parcel
 
 FEATURES = {
     "mohawk": [188951605, 188951613, 91009367],
@@ -59,6 +60,12 @@ def simplify(points, tol):
     return [points[0], points[-1]]
 
 
+def simplify_ring(points, tol):
+    # A ring starts and ends on the same point, so simplify each half
+    mid = len(points) // 2
+    return simplify(points[: mid + 1], tol)[:-1] + simplify(points[mid:], tol)
+
+
 def path(points, closed=False):
     out = "M" + " L".join(f"{x:.1f} {y:.1f}" for x, y in points)
     return out + ("Z" if closed else "")
@@ -75,19 +82,23 @@ def main():
             way = ways[wid]
             pts = [project(p) for p in way["geometry"]]
             closed = way.get("tags", {}).get("natural") == "water"
-            if closed:
-                # A ring starts and ends on the same point, so simplify each half
-                mid = len(pts) // 2
-                pts = simplify(pts[: mid + 1], 0.6)[:-1] + simplify(pts[mid:], 0.6)
-            else:
-                pts = simplify(pts, 0.6)
+            pts = simplify_ring(pts, 0.6) if closed else simplify(pts, 0.6)
             parts.append(path(pts, closed))
         paths[name] = " ".join(parts)
+
+    # Future arboretum parcels (a possible start)
+    parcels = json.load(open(sys.argv[2]))
+    rings = []
+    for feature in parcels["features"]:
+        ring = [project({"lon": lon, "lat": lat}) for lon, lat, *_ in feature["geometry"]["coordinates"][0]]
+        rings.append(path(simplify_ring(ring, 0.6), closed=True))
+    paths["arboretum"] = " ".join(rings)
 
     creek_pts = [project(p) for p in ways[CREEK]["geometry"]]
     falls = creek_pts[FALLS_INDEX]
     finish = creek_pts[FINISH_INDEX]
     start_hint = creek_pts[START_HINT_INDEX]
+    arboretum = creek_pts[ARBORETUM_INDEX]
     # The race runs from the falls down to The Root.
     race = simplify(creek_pts[FALLS_INDEX : FINISH_INDEX + 1], 0.4)
     # Upstream of the falls the creek is drawn faintly, as context.
@@ -111,6 +122,7 @@ def main():
     print()
     print(f"export const falls = {{ x: {falls[0]:.1f}, y: {falls[1]:.1f} }}")
     print(f"export const startHint = {{ x: {start_hint[0]:.1f}, y: {start_hint[1]:.1f} }}")
+    print(f"export const arboretum = {{ x: {arboretum[0]:.1f}, y: {arboretum[1]:.1f} }}")
     print(f"export const finish = {{ x: {finish[0]:.1f}, y: {finish[1]:.1f} }}")
 
 

@@ -1,4 +1,4 @@
-import { MAP_WIDTH, MAP_HEIGHT, paths, falls, startHint, finish } from '@/lib/mapData'
+import { MAP_WIDTH, MAP_HEIGHT, paths, falls, startHint, arboretum, finish } from '@/lib/mapData'
 import styles from './CreekMap.module.css'
 
 // A little paper boat, drawn around its own origin
@@ -23,7 +23,8 @@ export default function CreekMap() {
         <title id="map-title">Map of Yatesville Creek, Sprakers, New York</title>
         <desc id="map-desc">
           Yatesville Creek flows from Yatesville Falls at the top of the map down to the Mohawk River at the
-          bottom. South is up. The race starts at a secret spot upstream and finishes at The Root.
+          bottom. South is up. The race starts at a secret spot upstream, possibly the site of a future arboretum, and
+          finishes at The Root.
         </desc>
 
         <defs>
@@ -46,6 +47,9 @@ export default function CreekMap() {
           <path d={paths.route5s} className={styles.road} />
           <path d={paths.anderson} className={styles.minorRoad} />
           <path d={paths.preserve} className={styles.minorRoad} />
+
+          {/* Future arboretum parcels */}
+          <path d={paths.arboretum} className={styles.arboretum} />
 
           {/* Water */}
           <path d={paths.mohawk} className={styles.river} />
@@ -78,6 +82,13 @@ export default function CreekMap() {
           <text x="-166" y="10" textAnchor="end" className={styles.sublabel}>revealed soon</text>
         </g>
 
+        {/* Future arboretum: a possible start */}
+        <g transform={`translate(${arboretum.x} ${arboretum.y})`}>
+          <circle r="13" fill="var(--green)" stroke="var(--ink)" strokeWidth="3" />
+          <text x="26" y="-2" className={styles.label}>Future arboretum</text>
+          <text x="28" y="22" className={styles.sublabel}>name TBD · a possible start</text>
+        </g>
+
         {/* Finish: The Root */}
         <g transform={`translate(${finish.x} ${finish.y})`}>
           <rect x="-15" y="-15" width="30" height="30" fill="url(#checker)" stroke="var(--ink)" strokeWidth="3" />
@@ -94,7 +105,7 @@ export default function CreekMap() {
         {/* The boat sails the course, falls to finish */}
         <g className={styles.boat}>
           <Boat scale={1.1} />
-          <animateMotion dur="18s" repeatCount="indefinite" calcMode="linear">
+          <animateMotion dur="14s" repeatCount="indefinite" calcMode="linear">
             <mpath href="#race-course" />
           </animateMotion>
         </g>

@@ -2,6 +2,8 @@ import CreekMap from '@/components/CreekMap'
 import NotifyForm from '@/components/NotifyForm'
 import styles from './page.module.css'
 
+const FACEBOOK_EVENT_URL = 'https://www.facebook.com/events/1115284300875931/'
+
 const steps = [
   {
     number: '01',
@@ -23,13 +25,19 @@ const steps = [
   },
 ] as const
 
-const details = [
-  ['When', 'Spring 2027 · exact date to come'],
-  ['Start', 'Up the creek · location revealed to registered racers'],
+const details: [string, React.ReactNode][] = [
+  ['When', 'Friday, July 9, 2027 · tentative'],
+  ['Start', 'Up the creek, possibly the future arboretum (name TBD) · confirmed closer to race day'],
   ['Finish', 'The Root · Sprakers, New York'],
   ['Boats', 'Make your own or be given one · details to come'],
-  ['Who', 'Everyone: kids, grandparents, neighbors, naval architects'],
-] as const
+  ['Who', 'Invite only, by word of mouth. Everyone who signs up gets the details closer to race day.'],
+  [
+    'Facebook',
+    <a key="facebook" href={FACEBOOK_EVENT_URL} target="_blank" rel="noreferrer">
+      See the event on Facebook
+    </a>,
+  ],
+]
 
 export default function Home() {
   return (
@@ -45,7 +53,7 @@ export default function Home() {
 
       <section className={styles.hero}>
         <div className={styles.intro}>
-          <p className={styles.eyebrow}>Spring 2027 · Yatesville Creek</p>
+          <p className={styles.eyebrow}>July 9, 2027 · Yatesville Creek</p>
           <h1 className={styles.title}>
             <span className={styles.titleSmall}>The Inaugural</span>
             <span>Yatesville Creek</span>
@@ -57,11 +65,15 @@ export default function Home() {
             <span className={styles.wave} />
           </div>
           <p className={styles.lede}>
-            One creek, a fleet of paper boats, and the first warm days of spring. Launch your boat somewhere below
+            One creek, a fleet of paper boats, and a long midsummer afternoon. Launch your boat somewhere below
             Yatesville Falls and cheer it all the way down to The Root.
           </p>
           <div className={styles.notify}>
             <NotifyForm />
+            <a className={styles.facebook} href={FACEBOOK_EVENT_URL} target="_blank" rel="noreferrer">
+              <span className={styles.facebookMark} aria-hidden="true">f</span>
+              See the event on Facebook
+            </a>
           </div>
         </div>
 
@@ -102,7 +114,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <span>The Inaugural Yatesville Creek Paper Boat Race</span>
-        <span>Sprakers, New York · Spring 2027</span>
+        <span>Sprakers, New York · July 9, 2027</span>
       </footer>
     </main>
   )
