@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS notify_list (
 );
 
 -- The public (anon) key may add an email but never read the list back
+GRANT INSERT ON notify_list TO anon;
 ALTER TABLE notify_list ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "anon can sign up" ON notify_list;
