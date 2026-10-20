@@ -8,19 +8,19 @@ const FACEBOOK_EVENT_URL = 'https://www.facebook.com/events/1115284300875931/'
 const steps = [
   {
     number: '01',
-    glyph: 'boat',
+    glyph: 'fold',
     title: 'Fold',
     body: 'Bring a paper boat of your own design, or pick one up on the bank. Exact rules for boats are still being folded.',
   },
   {
     number: '02',
-    glyph: 'water',
+    glyph: 'float',
     title: 'Float',
     body: 'Everyone launches together from a secret spot up the creek, below Yatesville Falls. Then the current takes over.',
   },
   {
     number: '03',
-    glyph: 'root',
+    glyph: 'finish',
     title: 'Finish',
     body: 'Follow your boat along the banks down to The Root, where the first arrivals are fished out and celebrated.',
   },
@@ -45,9 +45,9 @@ export default function Home() {
     <main className={styles.main}>
       <header className={styles.topbar}>
         <span className={styles.mark} aria-hidden="true">
-          <Glyph name="boat" size={22} />
-          <Glyph name="water" size={22} />
-          <Glyph name="root" size={22} />
+          <Glyph name="fold" size={22} />
+          <Glyph name="float" size={22} />
+          <Glyph name="finish" size={22} />
         </span>
         <span>Sprakers, New York</span>
       </header>
@@ -61,9 +61,9 @@ export default function Home() {
             <span className={styles.titleAccent}>Paper Boat Race</span>
           </h1>
           <div className={styles.glyphs} aria-hidden="true">
-            <Glyph name="boat" size={60} />
-            <Glyph name="water" size={60} />
-            <Glyph name="root" size={60} />
+            <Glyph name="fold" size={60} />
+            <Glyph name="float" size={60} />
+            <Glyph name="finish" size={60} />
             <span className={styles.glyphRule} />
           </div>
           <p className={styles.lede}>

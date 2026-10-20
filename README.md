@@ -42,12 +42,12 @@ Repo: https://github.com/runfromrobots/YCPBR
 `lib/mapData.ts` is generated from OpenStreetMap data (© OpenStreetMap contributors, ODbL) by `scripts/build-map.py`. Things you may want to tune:
 
 - `FINISH_INDEX` is where **The Root** marker sits: where the 336 Anderson Road property meets the creek.
-- `ARBORETUM_INDEX` is where the creek crosses the future arboretum parcels (`scripts/arboretum-parcels.geojson`), marked as a possible start.
+- `ARBORETUM_INDEX` is where the **Arboretum** label sits on the creek.
 - `START_HINT_INDEX` is where the "?" start marker points. It's deliberately vague and isn't the real start.
 - `LAT_MIN/LAT_MAX/LON_MIN/LON_MAX` set the map window.
 
 To regenerate the map, export the area from Overpass as JSON, then run:
 
 ```bash
-python3 scripts/build-map.py area.json scripts/arboretum-parcels.geojson > lib/mapData.ts
+python3 scripts/build-map.py area.json > lib/mapData.ts
 ```

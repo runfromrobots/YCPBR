@@ -1,6 +1,6 @@
 """Build lib/mapData.ts from an OpenStreetMap Overpass JSON export.
 
-Usage: python3 scripts/build-map.py area.json scripts/arboretum-parcels.geojson > lib/mapData.ts
+Usage: python3 scripts/build-map.py area.json > lib/mapData.ts
 
 The map is rotated 180 degrees: south is at the top (upstream, near
 Yatesville Falls) and north is at the bottom (the Mohawk River).
@@ -24,7 +24,7 @@ CREEK = 175370060
 FALLS_INDEX = 199  # end of NY State Preserve Road, at the falls
 FINISH_INDEX = 257  # The Root (336 Anderson Road), where the property meets the creek
 START_HINT_INDEX = 232  # where the "start TBA" marker points; not the real start
-ARBORETUM_INDEX = 249  # where the creek crosses the future arboretum parcel
+ARBORETUM_INDEX = 249  # where the creek passes the arboretum
 
 FEATURES = {
     "mohawk": [188951605, 188951613, 91009367],
@@ -85,14 +85,6 @@ def main():
             pts = simplify_ring(pts, 0.6) if closed else simplify(pts, 0.6)
             parts.append(path(pts, closed))
         paths[name] = " ".join(parts)
-
-    # Future arboretum parcels (a possible start)
-    parcels = json.load(open(sys.argv[2]))
-    rings = []
-    for feature in parcels["features"]:
-        ring = [project({"lon": lon, "lat": lat}) for lon, lat, *_ in feature["geometry"]["coordinates"][0]]
-        rings.append(path(simplify_ring(ring, 0.6), closed=True))
-    paths["arboretum"] = " ".join(rings)
 
     creek_pts = [project(p) for p in ways[CREEK]["geometry"]]
     falls = creek_pts[FALLS_INDEX]
