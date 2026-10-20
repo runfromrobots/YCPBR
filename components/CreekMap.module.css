@@ -40,7 +40,7 @@
 }
 
 .arboretum {
-  fill: var(--green);
+  fill: var(--lichen);
   opacity: 0.55;
 }
 
@@ -50,14 +50,14 @@
 
 .tributary {
   fill: none;
-  stroke: var(--blue);
+  stroke: var(--river);
   stroke-width: 2;
   opacity: 0.5;
 }
 
 .creekFaint {
   fill: none;
-  stroke: var(--blue);
+  stroke: var(--river);
   stroke-width: 3;
   stroke-dasharray: 2 7;
   stroke-linecap: round;
@@ -66,14 +66,14 @@
 
 .creekLower {
   fill: none;
-  stroke: var(--blue);
+  stroke: var(--river);
   stroke-width: 4;
   stroke-linecap: round;
 }
 
 .creekRace {
   fill: none;
-  stroke: var(--blue);
+  stroke: var(--river);
   stroke-width: 9;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -132,7 +132,7 @@
   font-size: 30px;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  fill: var(--blue);
+  fill: var(--river);
 }
 
 .question {

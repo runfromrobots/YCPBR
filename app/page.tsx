@@ -1,4 +1,5 @@
 import CreekMap from '@/components/CreekMap'
+import Glyph from '@/components/Glyph'
 import NotifyForm from '@/components/NotifyForm'
 import styles from './page.module.css'
 
@@ -7,19 +8,19 @@ const FACEBOOK_EVENT_URL = 'https://www.facebook.com/events/1115284300875931/'
 const steps = [
   {
     number: '01',
-    shape: 'circle',
+    glyph: 'boat',
     title: 'Fold',
     body: 'Bring a paper boat of your own design, or pick one up on the bank. Exact rules for boats are still being folded.',
   },
   {
     number: '02',
-    shape: 'triangle',
+    glyph: 'water',
     title: 'Float',
     body: 'Everyone launches together from a secret spot up the creek, below Yatesville Falls. Then the current takes over.',
   },
   {
     number: '03',
-    shape: 'square',
+    glyph: 'root',
     title: 'Finish',
     body: 'Follow your boat along the banks down to The Root, where the first arrivals are fished out and celebrated.',
   },
@@ -44,9 +45,9 @@ export default function Home() {
     <main className={styles.main}>
       <header className={styles.topbar}>
         <span className={styles.mark} aria-hidden="true">
-          <span className={styles.markCircle} />
-          <span className={styles.markTriangle} />
-          <span className={styles.markSquare} />
+          <Glyph name="boat" size={22} />
+          <Glyph name="water" size={22} />
+          <Glyph name="root" size={22} />
         </span>
         <span>Sprakers, New York</span>
       </header>
@@ -59,10 +60,11 @@ export default function Home() {
             <span>Yatesville Creek</span>
             <span className={styles.titleAccent}>Paper Boat Race</span>
           </h1>
-          <div className={styles.shapes} aria-hidden="true">
-            <span className={styles.sun} />
-            <span className={styles.sail} />
-            <span className={styles.wave} />
+          <div className={styles.glyphs} aria-hidden="true">
+            <Glyph name="boat" size={60} />
+            <Glyph name="water" size={60} />
+            <Glyph name="root" size={60} />
+            <span className={styles.glyphRule} />
           </div>
           <p className={styles.lede}>
             One creek, a fleet of paper boats, and a long midsummer afternoon. Launch your boat somewhere below
@@ -89,7 +91,7 @@ export default function Home() {
         <ol className={styles.stepList}>
           {steps.map((step) => (
             <li key={step.number} className={styles.step}>
-              <span className={`${styles.stepShape} ${styles[step.shape]}`} aria-hidden="true" />
+              <Glyph name={step.glyph} size={64} className={styles.stepGlyph} />
               <span className={styles.stepNumber}>{step.number}</span>
               <h3 className={styles.stepTitle}>{step.title}</h3>
               <p>{step.body}</p>

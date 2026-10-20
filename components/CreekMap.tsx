@@ -6,7 +6,7 @@ function Boat({ scale = 1 }: { scale?: number }) {
   return (
     <g transform={`scale(${scale})`}>
       <path d="M-16 -2 L16 -2 L10 8 L-10 8 Z" fill="var(--paper)" stroke="var(--ink)" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M-6 -2 L2 -20 L8 -2 Z" fill="var(--red)" stroke="var(--ink)" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M-6 -2 L2 -20 L8 -2 Z" fill="var(--pine)" stroke="var(--ink)" strokeWidth="2" strokeLinejoin="round" />
     </g>
   )
 }
@@ -62,7 +62,7 @@ export default function CreekMap() {
 
         {/* Yatesville Falls */}
         <g transform={`translate(${falls.x} ${falls.y})`}>
-          <circle r="16" fill="var(--yellow)" stroke="var(--ink)" strokeWidth="3" />
+          <circle r="16" fill="var(--moss)" stroke="var(--ink)" strokeWidth="3" />
           <path d="M-6 -4 L-6 6 M0 -6 L0 8 M6 -4 L6 6" stroke="var(--ink)" strokeWidth="2.5" strokeLinecap="round" />
           <text x="30" y="0" className={styles.label}>Yatesville Falls</text>
           <text x="34" y="26" className={styles.sublabel}>a.k.a. Buttermilk Falls</text>
@@ -73,7 +73,7 @@ export default function CreekMap() {
           <line x1="0" y1="0" x2="-96" y2="-28" stroke="var(--ink)" strokeWidth="2" strokeDasharray="2 6" strokeLinecap="round" />
           <g transform="translate(-124 -36)">
             <g className={styles.mystery}>
-              <circle r="28" fill="var(--red)" stroke="var(--ink)" strokeWidth="3" />
+              <circle r="28" fill="var(--pine)" stroke="var(--ink)" strokeWidth="3" />
               <text y="12" textAnchor="middle" className={styles.question}>?</text>
             </g>
           </g>
@@ -84,7 +84,7 @@ export default function CreekMap() {
 
         {/* Future arboretum: a possible start */}
         <g transform={`translate(${arboretum.x} ${arboretum.y})`}>
-          <circle r="13" fill="var(--green)" stroke="var(--ink)" strokeWidth="3" />
+          <circle r="13" fill="var(--lichen)" stroke="var(--ink)" strokeWidth="3" />
           <text x="26" y="-2" className={styles.label}>Future arboretum</text>
           <text x="28" y="22" className={styles.sublabel}>name TBD · a possible start</text>
         </g>

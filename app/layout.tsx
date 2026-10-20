@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Jost } from 'next/font/google'
+import { Cormorant_Garamond, Jost } from 'next/font/google'
 import './globals.css'
 
 const jost = Jost({
@@ -8,17 +8,24 @@ const jost = Jost({
   variable: '--font-jost',
 })
 
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+})
+
 export const metadata: Metadata = {
   title: 'The Inaugural Yatesville Creek Paper Boat Race',
   description:
     'July 9, 2027 in Sprakers, New York: a fleet of paper boats floats down Yatesville Creek to The Root. Invite only; sign up to get the details.',
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M3 18h26l-5 8H8z' fill='%23f5f1e6' stroke='%231b1b1b' stroke-width='2'/><path d='M12 18l5-13 4 13z' fill='%23e0452b' stroke='%231b1b1b' stroke-width='2'/></svg>",
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M3 18h26l-5 8H8z' fill='%23ebeae1' stroke='%23242920' stroke-width='2'/><path d='M12 18l5-13 4 13z' fill='%234a6247' stroke='%23242920' stroke-width='2'/></svg>",
   },
 }
 
 export const viewport: Viewport = {
-  themeColor: '#f5f1e6',
+  themeColor: '#ebeae1',
 }
 
 export default function RootLayout({
@@ -27,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={jost.variable}>
+    <html lang="en" className={[jost, cormorant].map((f) => f.variable).join(' ')}>
       <body>{children}</body>
     </html>
   )

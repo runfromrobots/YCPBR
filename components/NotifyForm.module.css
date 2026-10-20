@@ -32,14 +32,14 @@
 }
 
 .row:focus-within {
-  box-shadow: 6px 6px 0 var(--yellow);
+  box-shadow: 6px 6px 0 var(--moss);
 }
 
 .button {
   padding: 14px 22px;
   border: 0;
   border-left: 3px solid var(--ink);
-  background: var(--red);
+  background: var(--pine);
   color: var(--paper);
   font-family: var(--font-display);
   font-weight: 700;
@@ -55,7 +55,7 @@
 }
 
 .button:focus-visible {
-  outline: 3px solid var(--yellow);
+  outline: 3px solid var(--moss);
   outline-offset: -6px;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .error {
-  color: var(--red);
+  color: var(--pine);
   font-weight: 600;
 }
 
@@ -92,7 +92,7 @@
   gap: 6px;
   padding: 18px 20px;
   border: 3px solid var(--ink);
-  background: var(--green);
+  background: var(--lichen);
   box-shadow: 6px 6px 0 var(--ink);
 }
 

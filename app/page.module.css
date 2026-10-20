@@ -21,30 +21,7 @@
 .mark {
   display: flex;
   align-items: center;
-  gap: 6px;
-}
-
-.markCircle,
-.markSquare {
-  width: 16px;
-  height: 16px;
-}
-
-.markCircle {
-  border-radius: 50%;
-  background: var(--yellow);
-}
-
-.markSquare {
-  background: var(--blue);
-}
-
-.markTriangle {
-  width: 0;
-  height: 0;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-bottom: 16px solid var(--red);
+  gap: 8px;
 }
 
 /* Hero */
@@ -87,36 +64,20 @@
 }
 
 .titleAccent {
-  color: var(--blue);
+  color: var(--river);
 }
 
-.shapes {
+.glyphs {
   display: flex;
-  align-items: flex-end;
-  gap: 14px;
-  height: 64px;
+  align-items: center;
+  gap: 18px;
 }
 
-.sun {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--yellow);
-}
-
-.sail {
-  width: 0;
-  height: 0;
-  border-left: 32px solid transparent;
-  border-right: 32px solid transparent;
-  border-bottom: 64px solid var(--red);
-}
-
-.wave {
+.glyphRule {
   flex: 1;
-  height: 20px;
-  background: var(--blue);
-  border-radius: 10px 10px 0 0;
+  height: 0;
+  border-top: 1.5px solid var(--ink);
+  opacity: 0.6;
 }
 
 .lede {
@@ -144,7 +105,7 @@
 }
 
 .facebook:hover {
-  color: var(--blue);
+  color: var(--river);
 }
 
 .facebookMark {
@@ -153,7 +114,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--blue);
+  background: var(--river);
   color: var(--paper);
   font-weight: 700;
   font-size: 17px;
@@ -161,7 +122,7 @@
 }
 
 .detailRow dd a {
-  color: var(--blue);
+  color: var(--river);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }
@@ -206,27 +167,8 @@
   border-left: 3px solid var(--ink);
 }
 
-.stepShape {
-  width: 56px;
-  height: 56px;
+.stepGlyph {
   margin-bottom: 10px;
-}
-
-.circle {
-  border-radius: 50%;
-  background: var(--yellow);
-}
-
-.triangle {
-  width: 0;
-  height: 0;
-  border-left: 28px solid transparent;
-  border-right: 28px solid transparent;
-  border-bottom: 56px solid var(--red);
-}
-
-.square {
-  background: var(--blue);
 }
 
 .stepNumber {

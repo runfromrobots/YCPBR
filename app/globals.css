@@ -1,14 +1,14 @@
 :root {
-  --paper: #f5f1e6;
-  --ink: #1b1b1b;
-  --red: #e0452b;
-  --yellow: #f2c230;
-  --blue: #2f5fd0;
-  --sky: #bcd4f2;
-  --green: #b5d99c;
-  --pink: #f4bfc8;
+  /* Natural palette: stone, umber, moss, pine, river */
+  --paper: #ebeae1;
+  --ink: #242920;
+  --moss: #8c9150;
+  --pine: #4a6247;
+  --river: #44707a;
+  --sky: #c4d4d0;
+  --lichen: #cbd0ad;
 
-  --font-display: var(--font-jost), 'Futura', 'Century Gothic', system-ui, sans-serif;
+  --font-display: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-jost), system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
@@ -45,5 +45,5 @@ p {
 }
 
 ::selection {
-  background: var(--yellow);
+  background: var(--moss);
 }
