@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { sendRegistrationAlert } from '@/lib/registrationAlert'
 import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -31,6 +32,11 @@ export async function POST(request: Request) {
   if (error && error.code !== '23505') {
     console.error('[notify] insert failed:', error.message)
     return NextResponse.json({ error: 'Something went sideways. Please try again.' }, { status: 500 })
+  }
+
+  // Only brand-new sign-ups trigger an alert; repeats were already announced
+  if (!error) {
+    await sendRegistrationAlert(email)
   }
 
   return NextResponse.json({ ok: true })
