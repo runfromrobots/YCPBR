@@ -27,6 +27,18 @@ You can run the site without Supabase. The form will just answer "Sign-ups aren'
 3. Copy the Project URL and anon key into `.env.local`, and into the Vercel project's environment variables.
 4. To see who signed up, open Supabase → Table Editor → `notify_list`, or export it as CSV.
 
+## Registration alerts
+
+Each new sign-up sends an email titled `YCPBR registration: <email>` through [Resend](https://resend.com). Repeat sign-ups don't send a second alert, and a failed alert never blocks the sign-up. It stays off until these Vercel environment variables are set:
+
+| Variable | Value |
+|---|---|
+| `RESEND_API_KEY` | an API key from resend.com → API Keys |
+| `REGISTRATION_ALERT_TO` | where alerts go (must be the email you signed up to Resend with, unless you verify a domain) |
+| `REGISTRATION_ALERT_FROM` | optional; defaults to `YCPBR <onboarding@resend.dev>` |
+
+A private Claude page lists every registrant by reading these alert emails from Gmail.
+
 ## Deployment (Vercel)
 
 Repo: https://github.com/runfromrobots/YCPBR
